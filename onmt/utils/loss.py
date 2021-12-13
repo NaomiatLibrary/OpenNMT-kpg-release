@@ -308,7 +308,7 @@ class CommonLossCompute(LossComputeBase):
         self.lambda_align = lambda_align
         self.tgt_shift_index = tgt_shift_index
         # self.sep_idx = sep_idx
-        # self.lambda_orth_reg = lambda_orth_reg
+        self.lambda_orth_reg = 0.1
         # self.lambda_sem_cov = lambda_sem_cov
         # self.n_neg = n_neg
         # self.semcov_ending_state= semcov_ending_state
@@ -403,7 +403,7 @@ class CommonLossCompute(LossComputeBase):
 
         # compute orthogonal penalty loss
         if self.lambda_orth_reg > 0.0:
-            target_sep_idx = batch.sep_indices
+            target_sep_idx = 64 #batch.sep_indices
             assert dec_states is not None
             assert target_sep_idx is not None
             # decoder hidden state: output of decoder
@@ -411,7 +411,7 @@ class CommonLossCompute(LossComputeBase):
             loss += orthogonal_penalty
             # print("Orth_reg=%.5f" % orthogonal_penalty)
         if self.lambda_sem_cov > 0.0:
-            target_sep_idx = batch.sep_indices
+            target_sep_idx = 64 #batch.sep_indices
             assert model is not None
             assert src_states is not None
             assert tgtenc_states is not None
@@ -634,7 +634,6 @@ class NMTLossCompute(CommonLossCompute):
     def __init__(self, criterion, generator, normalization="sents",
                  lambda_coverage=0.0, lambda_align=0.0):
         super(NMTLossCompute, self).__init__(criterion, generator,
-                                             normalization=normalization,
                                              lambda_coverage=lambda_coverage,
                                              lambda_align=lambda_align,
                                              tgt_shift_index=1)

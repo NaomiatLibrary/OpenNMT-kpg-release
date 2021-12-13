@@ -23,8 +23,8 @@ setup(
         "numpy==1.19.3",
         "six==1.15.0",
         "tqdm==4.51.0",
-        "torch==1.6.0",
-        "torchtext==0.4.0",
+        "torch==1.7.1", #"torch==1.6.0"
+        "torchtext==0.8.1", #"torchtext==0.4.0"
         "future==0.18.2",
         "configargparse==1.2.3",
         "tensorboard==2.3.0",

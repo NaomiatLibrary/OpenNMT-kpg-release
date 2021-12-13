@@ -174,7 +174,7 @@ class KeyphraseTransform(Transform):
             dataset_type = 'scipaper'
 
         assert dataset_type is not None, 'Fail to detect the data type of the given input file.' \
-                                         'Accecpted values:' + KP_DATASET_FIELDS.keys()
+                                         'Accecpted values:' + ",".join(KP_DATASET_FIELDS.keys())
         return dataset_type
 
     def apply(self, example, is_train=False, stats=None, **kwargs):

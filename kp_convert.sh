@@ -3,14 +3,18 @@ BASE_DATA_DIR="data/keyphrase/json"
 TOKENIZER="meng17"
 OUTPUT_DIR="data/keyphrase/$TOKENIZER"
 
-declare -a train_sets=("kp20k" "magkp" "kp20k_small")
-declare -a valid_sets=("kp20k" "inspec" "krapivin" "semeval")
-declare -a test_sets=("kp20k" "kp20k_valid2k" "kp20k_valid500" "kp20k_small" "duc" "inspec" "krapivin" "nus" "semeval")
+#declare -a train_sets=("kp20k" "magkp" "kp20k_small")
+#declare -a valid_sets=("kp20k" "inspec" "krapivin" "semeval")
+#declare -a test_sets=("kp20k" "kp20k_valid2k" "kp20k_valid500" "kp20k_small" "duc" "inspec" "krapivin" "nus" "semeval")
 #declare -a train_sets=("stackexchange")
 #declare -a valid_sets=("stackexchange")
 #declare -a test_sets=("stackexchange")
+declare -a train_sets=("kp20k" "lifehacker" "gizmodo" "semeval2017")
+declare -a valid_sets=("kp20k" "lifehacker" "gizmodo" "semeval2017")
+declare -a test_sets=("kp20k" "lifehacker" "gizmodo" "semeval2017")
 
-train_param="-filter -max_src_seq_length 1000 -min_src_seq_length 10 -max_tgt_seq_length 8 -min_src_seq_length 1 -lower -shuffle -tokenizer $TOKENIZER -replace_digit"
+# -filter抜いて　-include_original足してみた
+train_param="-include_original -max_src_seq_length 1000 -min_src_seq_length 10 -max_tgt_seq_length 8 -min_src_seq_length 1 -lower -shuffle -tokenizer $TOKENIZER -replace_digit"
 for train in "${train_sets[@]}"
 do
     echo 'Processing train' $train
