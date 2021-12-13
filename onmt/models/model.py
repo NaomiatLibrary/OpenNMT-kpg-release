@@ -65,6 +65,7 @@ class NMTModel(BaseModel):
         if not bptt:
             self.decoder.init_state(src, memory_bank, enc_state)
         # dec_out=[tgt_len, B, dec_dim], attns=[tgt_len, B, src_len]
+        # print("dec_in:", dec_in.size())
         dec_out, attns = self.decoder(dec_in, memory_bank,
                                       memory_lengths=lengths,
                                       with_align=with_align,

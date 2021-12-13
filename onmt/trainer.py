@@ -373,7 +373,7 @@ class Trainer(object):
                     batch.src = (batch.src[0].permute([1, 0, 2]), batch.src[1])
                 else:
                     batch.src = batch.src.permute([1, 0, 2]) # [src_len, B, 1]
-                batch.tgt = batch.tgt.permute([1, 0, 2]) # [tgt_len, B, 1]
+                #batch.tgt = batch.tgt.permute([1, 0, 2]) # [tgt_len, B, 1]
 
             target_size = batch.tgt.size(0)
             # Truncated BPTT: reminder not compatible with accum > 1
